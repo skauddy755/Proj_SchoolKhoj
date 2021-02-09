@@ -1,0 +1,3 @@
+module.exports = {
+    mongoURI: "mongodb+srv://SandAuddy755:ska755dog@cluster0-pd6o6.mongodb.net/School_khoj?retryWrites=true&w=majority"
+};
