@@ -3,13 +3,20 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const KEYS = require("./config/keys");
+
+const userRouter = require("./routes/api/user");
+//============================================================================================
+//============================================================================================
+
+// Instantiating EXPRESS
 const app = express();
 
 //body-parser Middleware
 app.use(bodyParser.json());
 
 // DB Config
-const db = require("./config/keys").mongoURI;
+const db = KEYS.mongoURI;
 // Connect to MongoDB
 mongoose.connect(db, {
     useUnifiedTopology: true,
@@ -20,7 +27,7 @@ mongoose.connect(db, {
 
 
 // Use Routes
-// app.use("/api/items", itemsRouter);
+app.use("/api/user", userRouter);
 
 // SERVE CLIENT AS STATIC ASSETS:
 if(process.env.NODE_ENV === "production")
@@ -31,7 +38,6 @@ if(process.env.NODE_ENV === "production")
     });
 }
 
-
 // PORT and Listen config
-const port = process.env.PORT || 5000;
+var port = KEYS.PORT;
 app.listen(port, ()=>console.log(`Server is running at port: ${port}`));
