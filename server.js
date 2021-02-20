@@ -2,10 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+const config = require("config");
 
 const KEYS = require("./config/keys");
 
-const userRouter = require("./routes/api/user");
+const testRouter = require("./routes/api/test");
+const usersRouter = require("./routes/api/users");
+const authRouter = require("./routes/api/auth");
 //============================================================================================
 //============================================================================================
 
@@ -16,7 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // DB Config
-const db = KEYS.mongoURI;
+const db = config.get("mongoURI"); //KEYS.mongoURI;
 // Connect to MongoDB
 mongoose.connect(db, {
     useUnifiedTopology: true,
@@ -27,7 +30,9 @@ mongoose.connect(db, {
 
 
 // Use Routes
-app.use("/api/user", userRouter);
+app.use("/api/test", testRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/auth", authRouter);
 
 // SERVE CLIENT AS STATIC ASSETS:
 if(process.env.NODE_ENV === "production")
