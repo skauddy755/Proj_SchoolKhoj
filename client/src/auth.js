@@ -2,8 +2,9 @@ import axios from "axios";
 
 function get_api()
 {
+  console.log(process.env.BASE_URL);
   let api = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: process.env.BASE_URL || "http://localhost:5000"
   });
   return api;
 }
