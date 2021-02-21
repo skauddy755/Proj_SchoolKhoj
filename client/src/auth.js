@@ -3,15 +3,19 @@ import axios from "axios";
 function get_api()
 {
   let BU;
-  if(window.location.host === "https://localhost:3000")
+  let f;
+  if(window.location.host === "localhost:3000")
   {
+    f = true;
     BU = "http://localhost:5000";
   }
   else
   {
-    BU = window.location.hostname;
+    f = false;
+    BU = window.location.origin;
   }
-  console.log();
+  console.log(BU);
+  console.log(f);
   let api = axios.create({
     baseURL: BU
   });
