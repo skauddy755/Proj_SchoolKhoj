@@ -2,7 +2,7 @@ import axios from "axios";
 
 function get_api()
 {
-  const BU;
+  let BU;
   if(window.location.host === "https://localhost:3000")
   {
     BU = "http://localhost:5000";
