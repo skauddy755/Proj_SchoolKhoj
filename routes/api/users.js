@@ -3,6 +3,7 @@ var express     = require("express"),
     bcrypt      = require("bcryptjs");
     config      = require("config");
     jwt         = require("jsonwebtoken");
+    cors        = require("cors");
 
 var User = require("../../models/User");
 
@@ -47,6 +48,12 @@ router.post("/register", (req, res) => {
         }
     });
 
+});
+
+router.get("/getallusers", cors(), (req, res) => {
+    User.find({}).then(users => {
+        res.json(users);
+    });
 });
 
 module.exports = router;

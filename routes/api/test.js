@@ -1,5 +1,6 @@
 var express     = require("express"),
     mongoose    = require("mongoose");
+    cors = require("cors");
 
 var KEYS    = require("../../config/keys.js");
 const User = require("../../models/User.js");
@@ -8,7 +9,7 @@ const auth = require("../../middleware/auth");
 
 var router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/obj", cors(), (req, res) => {
     console.log("Hi there!");
     var obj = {
         names: ["sandeep", "akash"],
@@ -18,10 +19,10 @@ router.get("/", (req, res) => {
             y: 100
         }
     };
-    res.status(300).json(obj);
+    res.json(obj);
 });
 
-router.post("/:id", (req, res) => {
+router.post("/:id",cors(), (req, res) => {
     console.log("POST REQ OCCURED...");
     console.log(req.params);
     console.log(req.body);

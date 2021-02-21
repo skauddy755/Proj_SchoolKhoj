@@ -1,10 +1,19 @@
 import axios from "axios";
 
-function testFetch()
+function get_api()
 {
-    console.log("Fetching request to API...");
-    axios.get("/api/tests")
-    .then(res => {console.log(res)});
+  let api = axios.create({
+    baseURL: "http://localhost:5000"
+  });
+  return api;
 }
 
-export default testFetch;
+function getAllUsers()
+{
+  let api = get_api();
+  api.get("/api/users/getallusers")
+    .then((res) => {console.log(res.data)})
+    .catch((e) => {console.log(e)});
+}
+
+export default getAllUsers;

@@ -4,13 +4,13 @@ import './App.css';
 import HomeComponent from "./components/HomeComponent";
 import MainComponent from "./components/MainComponent";
 
-import testFetch from "./auth";
+import getAllUsers from "./auth";
 
 function App() {
   return (
     <div className="App">
       <MainComponent />
-      <button onClick={() => {testFetch();}}>JO</button>
+      <button onClick={() => {getAllUsers();}}>JO</button>
     </div>
   );
 }
