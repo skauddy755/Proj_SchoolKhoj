@@ -2,9 +2,18 @@ import axios from "axios";
 
 function get_api()
 {
-  console.log(process.env.BASE_URL);
+  const BU;
+  if(window.location.host === "https://localhost:3000")
+  {
+    BU = "http://localhost:5000";
+  }
+  else
+  {
+    BU = window.location.hostname;
+  }
+  console.log();
   let api = axios.create({
-    baseURL: process.env.BASE_URL || "http://localhost:5000"
+    baseURL: BU
   });
   return api;
 }
